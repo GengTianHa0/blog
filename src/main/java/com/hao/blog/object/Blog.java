@@ -2,17 +2,21 @@ package com.hao.blog.object;
 
 
 import lombok.Data;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Data
+@DynamicUpdate
 public class Blog {
 
     @Id
     @GeneratedValue
     private Long id;
+    //一个user对多个blog
+    private Long userId;
 
     private String title;
 

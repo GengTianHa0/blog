@@ -1,9 +1,12 @@
 package com.hao.blog.object;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@DynamicUpdate
 public class Comment {
 
     @Id

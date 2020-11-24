@@ -7,10 +7,8 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 
 @Entity
@@ -38,12 +36,9 @@ public class User {
 
     private Date updateTime;
 
-    @OneToMany(mappedBy = "user")
-    private List<Blog> blogs = new ArrayList<>();
 
-    public User(){
 
-    }
+
 
     @Override
     public String toString() {
@@ -57,7 +52,6 @@ public class User {
                 ", type=" + type +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
-                ", blogs=" + blogs +
                 '}';
     }
 }

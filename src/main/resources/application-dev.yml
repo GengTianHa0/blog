@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+server:
+  servlet:
+    context-path: /blog
+#logging:
+#  level: debug
+#  file:
+#    path: D:\blog\blog.log
+#  pattern:
+#    console: "%d - $msg%n"
+
+
+

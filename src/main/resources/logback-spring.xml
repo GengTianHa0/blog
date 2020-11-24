@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <!--设置控制台日志输出格式-->
+            <pattern>
+                %d - %msg%n
+            </pattern>
+        </layout>
+
+    </appender>
+    <!--设置控制台上输出的级别 为info以上  ERROR、WARN、INFO、DEBUG。-->
+    <root level="info">
+        <appender-ref ref="consoleLog"/>
+    </root>
+
+
+    <!--设置文件-->
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--如果碰撞到了ERROR就DENY拒绝接受，否则就接受-->
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>
+                %msg%n
+            </pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>
+                <!--我们以当前时间作为名字-->
+                D:\blog\log\fileInfoLog\info.%d.log
+            </fileNamePattern>
+        </rollingPolicy>
+    </appender>
+    <!--设置文件-->
+    <appender name="fileErrorLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!--过滤器：接口ThresholdFilter  只输出error级别以及以上的数据-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <encoder>
+            <pattern>
+                %msg%n
+            </pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>
+                <!--我们以当前时间作为名字-->
+                D:\boot_log\log\fileErrorLog\info.%d.log
+            </fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <!--我们在info级别以上使用该配置-->
+    <root level="info">
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="fileInfoLog"/>
+        <appender-ref ref="fileErrorLog"/>
+    </root>
+
+
+
+</configuration>

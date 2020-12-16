@@ -6,7 +6,9 @@ import com.hao.blog.repository.TypeRepository;
 import com.hao.blog.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,7 +25,6 @@ public class TypeServiceImpl implements TypeService {
     public Type saveType(Type type) {
         return typeRepository.save(type);
     }
-
 
     @Transactional
     @Override
@@ -48,7 +49,9 @@ public class TypeServiceImpl implements TypeService {
 
     @Override
     public List<Type> listTypeTop(Integer size) {
-        return null;
+        Sort sort =  Sort.by(Sort.Direction.DESC,"blogs.size");
+        Pageable pageable = PageRequest.of(0,size,sort);
+        return typeRepository.findTop(pageable);
     }
 
     @Override

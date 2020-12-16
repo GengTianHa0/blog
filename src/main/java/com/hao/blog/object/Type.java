@@ -1,30 +1,27 @@
 package com.hao.blog.object;
 
+import org.hibernate.validator.constraints.NotBlank;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 public class Type {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "分类名称不能为空")
     private String name;
-    private Long blogId;
-//    private List<Blog> blogs = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Type{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+    @OneToMany(mappedBy = "type")
+    private List<Blog> blogs = new ArrayList<>();
 
-                '}';
+    public Type() {
     }
+
     public Long getId() {
         return id;
     }
@@ -41,11 +38,19 @@ public class Type {
         this.name = name;
     }
 
-    public Long getBlogId() {
-        return blogId;
+    public List<Blog> getBlogs() {
+        return blogs;
     }
 
-    public void setBlogId(Long blogId) {
-        this.blogId = blogId;
+    public void setBlogs(List<Blog> blogs) {
+        this.blogs = blogs;
+    }
+
+    @Override
+    public String toString() {
+        return "Type{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

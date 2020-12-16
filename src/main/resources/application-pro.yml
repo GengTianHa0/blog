@@ -7,16 +7,11 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
-
-
-
-
-
+      ddl-auto: update
 server:
   servlet:
     context-path: /blog
-  port: 8081
+  port: 8080
 #logging:
 #  level: warn
 #  file:

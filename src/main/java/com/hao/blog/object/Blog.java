@@ -6,12 +6,11 @@ import java.util.Date;
 import java.util.List;
 
 
-@Entity
+
 
 public class Blog {
 
-    @Id
-    @GeneratedValue
+
     private Long id;
 
     private String title;

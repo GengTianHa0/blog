@@ -22,7 +22,7 @@ public interface BlogRepository extends JpaRepository<Blog ,Long> , JpaSpecifica
 
     @Query("select b from Blog  b where b.title like ?1 or b.content like ?2")
     Page<Blog> findByQuery(String query,Pageable pageable);
-
+//
     @Transactional
     @Modifying
     @Query("update Blog b set b.views = b.views+1 where b.id = ?1")
